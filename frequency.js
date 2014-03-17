@@ -1,42 +1,42 @@
-/* Based on:
- * http://github.com/pranavrc/frequency/
+/* frequency.js
  * (c) Pranav Ravichandran <me@onloop.net>
  * Released under the MIT license.
+ * http://github.com/pranavrc/frequency/
  */
+
 $(document).ready(function () {
-    var count = 1;
+    var count = 0;
 
     $("[data-frequency]").each(function () {
         var frequency = parseFloat(($(this).data('frequency')));
-        var beginFadePercentage = (frequency <= 1) ? 75 : (frequency - 1) / frequency * 100;
-        var midFadePercentage = (100 + beginFadePercentage) / 2;
+        var fadeDelay = Math.log(frequency) / Math.LN10;
+        var fadeTimePercentage = (frequency <= 2) ? 75 : fadeDelay * 100 / frequency;
         var aName = 'fade' + count;
 
         $('head').append("<style>                         \
-            @keyframes " + aName + " { " + beginFadePercentage +
-                "%   {opacity:0.10;}" + midFadePercentage +
-                "%   {opacity:1;}                         \
+            @keyframes " + aName + " {                    \
+                0%   {opacity:1;}" + fadeTimePercentage +
+                "%   {opacity:0.10;}                      \
                 100% {opacity:0.10;}                      \
             }                                             \
-            @-webkit-keyframes " + aName + " { " + beginFadePercentage +
-                "%   {opacity:0.10;}" + midFadePercentage +
-                "%   {opacity:1;}                         \
+            @-webkit-keyframes " + aName + " {            \
+                0%   {opacity:1;}" + fadeTimePercentage +
+                "%   {opacity:0.10;}                      \
                 100% {opacity:0.10;}                      \
             }                                             \
-            @-moz-keyframes " + aName + " { " + beginFadePercentage +
-                "%   {opacity:0.10;}" + midFadePercentage +
-                "%   {opacity:1;}                         \
+            @-moz-keyframes " + aName + " {               \
+                0%   {opacity:1;}" + fadeTimePercentage +
+                "%   {opacity:0.10;}                      \
                 100% {opacity:0.10;}                      \
             }                                             \
-            @-o-keyframes " + aName + " { " + beginFadePercentage +
-                "%   {opacity:0.10;}" + midFadePercentage +
-                "%   {opacity:1;}                         \
+            @-o-keyframes " + aName + " {                 \
+                0%   {opacity:1;}" + fadeTimePercentage +
+                "%   {opacity:0.10;}                      \
                 100% {opacity:0.10;}                      \
             }                                             \
         </style>");
 
         $(this).css({
-            "opacity": 0.1,
             "animation": aName + " " + frequency + "s forwards",
             "-webkit-animation": aName + " " + frequency + "s forwards",
             "-moz-animation": aName + " " + frequency + "s forwards",
