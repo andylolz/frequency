@@ -5,14 +5,17 @@
  */
 
 $(document).ready(function () {
-    var count = 0;
-
+    var fadeList = [];
     $("[data-frequency]").each(function () {
-        var frequency = parseFloat(($(this).data('frequency')));
+        var frequencyStr = $(this).data('frequency').toString();
+        if (fadeList.indexOf(frequencyStr) > -1) { return; }
+        fadeList.push(frequencyStr);
+        var frequency = parseFloat(frequencyStr);
+
         var fadeDelay = Math.log(frequency) / Math.LN10;
         var initialDelay = Math.random() * frequency;
         var fadeTimePercentage = (frequency <= 2) ? 75 : fadeDelay * 100 / frequency;
-        var aName = 'fade' + count;
+        var aName = 'fade' + frequencyStr.replace('.', 'd');
 
         $('head').append("<style>                         \
             @keyframes " + aName + " {                    \
@@ -39,20 +42,10 @@ $(document).ready(function () {
 
         $(this).css({
             "opacity": 0.1,
-            "animation": aName + " " + frequency + "s forwards",
-            "-webkit-animation": aName + " " + frequency + "s forwards",
-            "-moz-animation": aName + " " + frequency + "s forwards",
-            "-o-animation": aName + " " + frequency + "s forwards",
-            "animation-iteration-count": "infinite",
-            "-webkit-animation-iteration-count": "infinite",
-            "-moz-animation-iteration-count": "infinite",
-            "-o-animation-iteration-count": "infinite",
-            "animation-delay": initialDelay + "s",
-            "-webkit-animation-delay": initialDelay + "s",
-            "-moz-animation-delay": initialDelay + "s",
-            "-o-animation-delay": initialDelay + "s"
+            "animation": aName + " " + frequency + "s " + initialDelay + "s infinite forwards",
+            "-webkit-animation": aName + " " + frequency + "s " + initialDelay + "s infinite forwards",
+            "-moz-animation": aName + " " + frequency + "s " + initialDelay + "s infinite forwards",
+            "-o-animation": aName + " " + frequency + "s " + initialDelay + "s infinite forwards"
         });
-
-        count++;
     });
 });
