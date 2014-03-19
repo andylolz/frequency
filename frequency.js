@@ -19,24 +19,24 @@ $(document).ready(function () {
 
         $('head').append("<style>                         \
             @keyframes " + aName + " {                    \
-                0%   {opacity:1;}" + fadeTimePercentage +
-                "%   {opacity:0.10;}                      \
-                100% {opacity:0.10;}                      \
+                0%   {opacity:1;color:#f00}" + fadeTimePercentage +
+                "%   {opacity:0.10;color:#000}                      \
+                100% {opacity:0.10;color:#000}                      \
             }                                             \
             @-webkit-keyframes " + aName + " {            \
-                0%   {opacity:1;}" + fadeTimePercentage +
-                "%   {opacity:0.10;}                      \
-                100% {opacity:0.10;}                      \
+                0%   {opacity:1;color:#f00}" + fadeTimePercentage +
+                "%   {opacity:0.10;color:#000}                      \
+                100% {opacity:0.10;color:#000}                      \
             }                                             \
             @-moz-keyframes " + aName + " {               \
-                0%   {opacity:1;}" + fadeTimePercentage +
-                "%   {opacity:0.10;}                      \
-                100% {opacity:0.10;}                      \
+                0%   {opacity:1;color:#f00}" + fadeTimePercentage +
+                "%   {opacity:0.10;color:#000}                      \
+                100% {opacity:0.10;color:#000}                      \
             }                                             \
             @-o-keyframes " + aName + " {                 \
-                0%   {opacity:1;}" + fadeTimePercentage +
-                "%   {opacity:0.10;}                      \
-                100% {opacity:0.10;}                      \
+                0%   {opacity:1;color:#f00}" + fadeTimePercentage +
+                "%   {opacity:0.10;color:#000}                      \
+                100% {opacity:0.10;color:#000}                      \
             }                                             \
         </style>");
 
